@@ -1,0 +1,106 @@
+p {
+    font-family: Arial;
+    font-size: 20px;
+}
+
+li {
+    font-family: Arial;
+    font-size: 18px;
+}
+
+body{
+    font-family: "Euclid Circular A", "Poppins";
+    /*padding: 0px 40px 10px 40px;*/
+    background-color: #9cd1ff;
+}
+
+.encabezado{
+    font-size: 80px;
+    text-align: center;
+}
+
+.hindex {
+    font-size: 40px;
+}
+
+footer{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer{
+    position: relative;
+    width: 100%;
+    background-color: #121212;
+    min-height: 100px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+
+}
+
+.elemento_menu{
+    list-style: none;
+
+}
+
+.iconos_menu{
+    color:white;
+    font-size: 20px;
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px 10px;
+    opacity: 0.75;
+    transition: 0.3s;
+}
+
+.iconos_menu:hover{
+    opacity: 1;
+}
+
+.texto{
+    color: #0B0D26;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+footer section h3 {
+    color: rgb(255 255 255 / 40%);
+    font-weight: 400;
+    font-size: 13px;
+}
+    
+footer section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    text-align: center;
+}
+    
+footer section ul li a {
+    display: block;
+    margin-bottom: 10px;
+    color: rgb(255 255 255 / 90%);
+}
+
+.resaltado {
+    background-color: gainsboro;
+}

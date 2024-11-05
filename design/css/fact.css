@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Euclid Circular A", "Poppins";
+}
+
+body {
+    background-color: #f0f0f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 400px;
+    overflow-y: auto;
+    max-height: 90vh;
+    margin: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.total {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.conditional-fields {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+svg {
+    width: 256px;
+    height: 256px;
+    justify-content: left;
+}
+
+/* SMOKE */
+#smoke-1 {
+    stroke-dasharray: 0, 10;
+    animation: smoke 4s ease infinite;
+}
+
+#smoke-2 {
+    stroke-dasharray: 0, 10;
+    animation: smoke 4s 0.5s ease infinite;
+}
+
+@keyframes smoke {
+    0% { stroke-dasharray: 0, 10; }
+    50% { stroke-dasharray: 10, 0; }
+    100% { stroke-dasharray: 10, 0; opacity: 0; }
+}
+
+/* WRITING */
+#line-1 {
+    opacity: 0;
+    animation: writing 1s 0.75s linear forwards infinite;
+}
+
+#line-2 {
+    opacity: 0;
+    animation: writing 1.5s 1s linear forwards infinite;
+}
+
+#line-3 {
+    opacity: 0;
+    animation: writing 2s 1.5s linear forwards infinite;
+}
+
+#line-4 {
+    opacity: 0;
+    animation: writing 2.5s 2s linear forwards infinite;
+}
+
+@keyframes writing {
+    0% { width: 0px; opacity: 1; }
+    100% { width: 14px; opacity: 1; }
+}

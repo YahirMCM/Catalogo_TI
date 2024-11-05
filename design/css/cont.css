@@ -1,0 +1,383 @@
+body {
+    justify-content: center;
+
+    background-color: #EBE7E7;
+}
+
+p {
+    font-family: Arial;
+    font-size: 20px;
+}
+
+.encabezado{
+    font-size: 80px;
+    text-align: center;
+}
+
+.hindex {
+    font-size: 40px;
+}
+
+.copyright {
+    font-size: 14px;
+}
+
+:root {
+    --color-primary: #2f67ec;
+}
+
+menu {
+    font-family: "Euclid Circular A", "Poppins";
+    background: #12161f;
+    color: white;
+    margin: 0;
+    height: fit-content;
+    display: grid;
+    place-items: center;
+}
+
+nav {
+    position: relative;
+    background: #1f2635;
+    font-weight: 400;
+    font-size: 0;
+    display: inline-flex;
+    padding: -10;
+    width: 85%;
+}
+
+nav .item {
+    text-decoration: none;
+    color: #F8F8F8;
+    font-size: 0.8rem;
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+    cursor: pointer;
+    z-index: 4;
+    min-width: 19%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+
+
+.dropdown {
+    overflow: hidden;
+    list-style: none;
+    position: absolute;
+    padding: 0;
+    width: 100%;
+    left: 0;
+    top: 62px;
+}
+.dropdown > div {
+    transform: translate(0, -100%);
+    transition: all 0.5s 0.1s;
+    position: relative;
+}
+
+.dropdown a {
+    font-family: "Euclid Circular A", "Poppins";
+    display: block;
+    padding: 0;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: var(--color-primary);
+    color: #E8E8E8;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    background: #254fb5;
+}
+
+.underline {
+    height: 6px;
+    background: var(--color-primary);
+    position: absolute;
+    bottom: 0;
+    width: 20%;
+    z-index: 1;
+    pointer-events: none;
+    transition: 0.35s;
+
+}
+
+nav .item:hover > .dropdown > div {
+    transform: translate(0);
+}
+
+nav .item:nth-child(1):hover ~ .underline {
+    transform: translate(0, 0);
+}
+
+nav .item:nth-child(2):hover ~ .underline {
+    transform: translate(100%, 0);
+}
+
+nav .item:nth-child(3):hover ~ .underline {
+    transform: translate(200%, 0);
+}
+
+nav .item:nth-child(4):hover ~ .underline {
+    transform: translate(300%, 0);
+}
+
+nav .item:nth-child(5):hover ~ .underline {
+    transform: translate(400%, 0);
+}
+
+
+
+td svg {
+width: 256px;
+height: 256px;
+justify-content: center;
+}
+
+/* SMOKE */
+#smoke-1 {
+stroke-dasharray: 0, 10;
+animation: smoke 6s ease infinite;
+}
+
+#smoke-2 {
+stroke-dasharray: 0, 10;
+animation: smoke 6s 0.5s ease infinite;
+}
+
+@keyframes smoke {
+0% { stroke-dasharray: 0, 10; }
+50% { stroke-dasharray: 10, 0; }
+100% { stroke-dasharray: 10, 0; opacity: 0; }
+}
+
+/* WRITING */
+#line-1 {
+opacity: 0;
+animation: writing 0.5s linear forwards;
+}
+
+#line-2 {
+opacity: 0;
+animation: writing 0.5s 1s linear forwards;
+}
+
+#line-3 {
+opacity: 0;
+animation: writing 0.5s 1.5s linear forwards;
+}
+
+#line-4 {
+opacity: 0;
+animation: writing 0.5s 2s linear forwards;
+}
+
+@keyframes writing {
+0% { width: 0px; opacity: 1;}
+100% { width: 14px; opacity: 1;}
+}
+
+.background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+}
+
+.socials a {
+    font-size: 24px;
+}
+
+.links a {
+    font-family: "Euclid Circular A", "Poppins";
+    gap: 10px;
+    color: #E8E8E8;
+    text-decoration: wavy;
+}
+
+.legal {
+    font-size: 12px;
+    margin: 0;
+}
+
+/* SECCION PARA INGRESAR INFORMACION DE CONTACTO */
+
+#RegistroContacto {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+#RegistroContacto h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+#RegistroContacto fieldset {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#RegistroContacto legend {
+    font-weight: bold;
+    color: #444;
+    padding: 0 10px;
+}
+
+#RegistroContacto .RegistroContacto {
+    margin-bottom: 15px;
+}
+
+#RegistroContacto .RegistroContacto label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+#RegistroContacto .RegistroContacto input,
+#RegistroContacto .RegistroContacto select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+#RegistroContacto .RegistroContacto input::placeholder {
+    color: #aaa;
+}
+
+#RegistroContacto button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+#RegistroContacto button:hover {
+    background-color: #218838;
+}
+
+#RegistroContacto #Info_Org {
+    display: none;
+}
+
+#RegistroContacto #Info_Org .RegistroContacto {
+    margin-bottom: 10px;
+}
+
+/* Sección de Ubicación */
+#ubicacion-empresa {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#ubicacion-empresa:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Encabezado de la Sección */
+.ubicacion-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.ubicacion-header h2 {
+    font-size: 36px;
+    color: #007BFF;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ubicacion-header p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Diseño en dos columnas */
+.ubicacion-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Texto de Ubicación */
+.ubicacion-texto {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 25px;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.ubicacion-texto h3 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.ubicacion-texto p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Contenedor del Mapa */
+.map-container {
+    flex: 2;
+    min-width: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.map-container:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Mapa Iframe */
+.mapa-iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+}

@@ -1,0 +1,123 @@
+.carrito_compras {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.carrito_barra {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    transition: 0.3s ease;
+    z-index: 999;
+}
+
+.carrito_barra h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    z-index: 1;
+    padding-bottom: 10px;
+}
+
+#carrito-contenido div {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #444;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.carrito_barra p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#total-carrito {
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.carrito_barra button {
+    background-color: whitesmoke;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.carrito_barra button:hover {
+    background-color: #e0e0e0;
+}
+
+button.eliminar-todo {
+    background-color: #cc0000;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button.eliminar-todo:hover {
+    background-color: #b30000;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 998;
+}
+
+.carrito_barra.open {
+    right: 0;
+}
+
+.overlay.open {
+    display: block;
+}
+
+#carrito-contenido div {
+    border: none;
+    background-color: #444;
+    color: white;
+}
+
+.carrito_barra div {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #444;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 10px;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+}
