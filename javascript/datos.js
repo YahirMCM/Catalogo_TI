@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalAmount = document.getElementById('totalAmount');
     const generatePdfButton = document.getElementById('generatePdf');
     const itemsContainer = document.getElementById('items');
+    const totalDespuesIVA = document.getElementById('totalDespuesIVA');
 
     // Inicialmente deshabilitar el botón
     generatePdfButton.disabled = true;
@@ -62,8 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     cargarProductos(carrito);
 
+
     function cargarProductos(carrito) {
+        itemsContainer.innerHTML = ""; // Limpia el contenedor de items antes de cargar productos
         let total = 0;
+        let totalNeto = 0;
         carrito.forEach(item => {
             const productRow = document.createElement('div');
             productRow.classList.add('item');
@@ -74,8 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
             itemsContainer.appendChild(productRow);
             total += item.precio * item.cantidad;
         });
-        totalAmount.textContent = total.toFixed(2);
+        totalAmount.textContent = total.toFixed(1);
+        totalNeto = total + (total * 0.16)
+        totalDespuesIVA.textContent = totalNeto.toFixed(1);
     }
+    
 
     // Generar el PDF con los datos
     generatePdfButton.addEventListener('click', () => {
@@ -99,6 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         let y = 20;
+
+        // Aquí generé el número de transacción
+        const trans = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
+        // Luego remplazar por nuestro número de cuenta o paypal donde depositar
+        const noCuenta = "1234 5678 1234 5678";
 
         // Encabezado del PDF
         doc.setFontSize(22);
@@ -144,8 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Total
         y += 10;
         doc.setFontSize(16);
-        doc.text(`Total: $${totalAmount.textContent} MXN`, 10, y);
-
+        doc.text(`Total antes de impuestos: $${totalAmount.textContent} MXN`, 10, y); y += 10;
+        doc.text(`IVA: 16%`, 10, y); y += 10;
+        doc.text(`Total: $${totalDespuesIVA.textContent} MXN`, 10, y); y += 20;
+        doc.text(`Número de transacción: ${trans}`, 10, y); y += 10;
+        doc.text(`Realizar pago a número de cuenta: ${noCuenta}`, 10, y);
         // Descargar el PDF
         doc.save("Factura_DTT.pdf");
     });
