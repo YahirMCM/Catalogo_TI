@@ -1,6 +1,5 @@
 body {
     justify-content: center;
-
     background-color: #EBE7E7;
 }
 
@@ -9,7 +8,7 @@ p {
     font-size: 20px;
 }
 
-.encabezado{
+.encabezado {
     font-size: 80px;
     text-align: center;
 }
@@ -44,6 +43,7 @@ nav {
     display: inline-flex;
     padding: -10;
     width: 85%;
+    justify-content: space-between;
 }
 
 nav .item {
@@ -55,12 +55,11 @@ nav .item {
     padding: 0 10px;
     cursor: pointer;
     z-index: 4;
-    min-width: 19%;
+    width: 24%;
     height: 60px;
     line-height: 60px;
     text-align: center;
 }
-
 
 .dropdown {
     overflow: hidden;
@@ -71,6 +70,7 @@ nav .item {
     left: 0;
     top: 62px;
 }
+
 .dropdown > div {
     transform: translate(0, -100%);
     transition: all 0.5s 0.1s;
@@ -98,11 +98,10 @@ nav .item {
     background: var(--color-primary);
     position: absolute;
     bottom: 0;
-    width: 20%;
+    width: 25%;
     z-index: 1;
     pointer-events: none;
     transition: 0.35s;
-
 }
 
 nav .item:hover > .dropdown > div {
@@ -125,59 +124,53 @@ nav .item:nth-child(4):hover ~ .underline {
     transform: translate(300%, 0);
 }
 
-nav .item:nth-child(5):hover ~ .underline {
-    transform: translate(400%, 0);
-}
-
-
-
 td svg {
-width: 256px;
-height: 256px;
-justify-content: center;
+    width: 256px;
+    height: 256px;
+    justify-content: center;
 }
 
 /* SMOKE */
 #smoke-1 {
-stroke-dasharray: 0, 10;
-animation: smoke 6s ease infinite;
+    stroke-dasharray: 0, 10;
+    animation: smoke 6s ease infinite;
 }
 
 #smoke-2 {
-stroke-dasharray: 0, 10;
-animation: smoke 6s 0.5s ease infinite;
+    stroke-dasharray: 0, 10;
+    animation: smoke 6s 0.5s ease infinite;
 }
 
 @keyframes smoke {
-0% { stroke-dasharray: 0, 10; }
-50% { stroke-dasharray: 10, 0; }
-100% { stroke-dasharray: 10, 0; opacity: 0; }
+    0% { stroke-dasharray: 0, 10; }
+    50% { stroke-dasharray: 10, 0; }
+    100% { stroke-dasharray: 10, 0; opacity: 0; }
 }
 
 /* WRITING */
 #line-1 {
-opacity: 0;
-animation: writing 0.5s linear forwards;
+    opacity: 0;
+    animation: writing 0.5s linear forwards;
 }
 
 #line-2 {
-opacity: 0;
-animation: writing 0.5s 1s linear forwards;
+    opacity: 0;
+    animation: writing 0.5s 1s linear forwards;
 }
 
 #line-3 {
-opacity: 0;
-animation: writing 0.5s 1.5s linear forwards;
+    opacity: 0;
+    animation: writing 0.5s 1.5s linear forwards;
 }
 
 #line-4 {
-opacity: 0;
-animation: writing 0.5s 2s linear forwards;
+    opacity: 0;
+    animation: writing 0.5s 2s linear forwards;
 }
 
 @keyframes writing {
-0% { width: 0px; opacity: 1;}
-100% { width: 14px; opacity: 1;}
+    0% { width: 0px; opacity: 1; }
+    100% { width: 14px; opacity: 1; }
 }
 
 .background {
@@ -214,7 +207,6 @@ ul {
 }
 
 /* SECCION PARA INGRESAR INFORMACION DE CONTACTO */
-
 #RegistroContacto {
     max-width: 800px;
     margin: 50px auto;
