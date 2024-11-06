@@ -39,6 +39,68 @@ function cargarProductos(carrito) {
 // En el botón de enviar correo hace lo siguiente
 senderPdf.addEventListener('click', () => {
 
+    // Acá validamos todos los campos
+            // Obtener los valores de los campos
+            const nom = document.getElementById('name').value;
+            const appm = document.getElementById('apellidos').value;
+            const rfc1 = document.getElementById('dni').value;
+            const codigoPostal = document.getElementById('cpostal').value;
+            const correo = document.getElementById('email').value;
+            const nomOrg = document.getElementById('orgName').value;
+            const rfcMoral = document.getElementById('taxId').value;
+            console.log("Valida");
+    
+            // Variable para acumular mensajes de error
+            let errores = [];
+
+            const nomApRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{1,60}$/;
+            const rfcRegex = /^[A-Z0-9]{13}$/i;
+            const correoRegex = /^[\w._%+-]+@[a-zA-Z0-9.-]+\.(com|edu\.mx)$/;
+            const codigoPostalRegex = /^[0-9]{5}$/;
+
+            if (customerType.value === 'individuo') {
+                // Validación de Nombre - Menos de 60 caracteres
+                if (!nomApRegex.test(nom)) {
+                    errores.push("El Nombre debe tener solamente letras");
+                }
+        
+                // Validación de Apellidos - Menos de 80 caracteres
+                if (!nomApRegex.test(appm)) {
+                    errores.push("Los Apellidos deben tener solamente letras");
+                }
+        
+                // Validación de RFC - Exactamente 13 caracteres alfanuméricos
+                if (!rfcRegex.test(rfc1)) {
+                    errores.push("El RFC debe contener 13 caracteres alfanuméricos.");
+                }
+            } else if (customerType.value === 'organizacion')
+            {
+                // Validación de Nombre de Organización - Menos de 80 caracteres
+                if (!nomApRegex.test(nomOrg)) {
+                    errores.push("Los Apellidos deben tener solamente letras");
+                }
+        
+                // Validación de RFC - Exactamente 13 caracteres alfanuméricos
+                if (!rfcRegex.test(rfcMoral)) {
+                    errores.push("El RFC debe contener 13 caracteres alfanuméricos.");
+                }
+            }
+    
+            // Validación de Código Postal - 5 caracteres numéricos
+            if (!codigoPostalRegex.test(codigoPostal)) {
+                errores.push("El Código Postal debe tener 5 digitos.");
+            }
+            // Validación de Correo Electrónico - Contiene "@" y termina en ".com" o ".edu.mx"
+            if (!correoRegex.test(correo)) {
+                errores.push("El Correo Electrónico no es válido.");
+            }
+            // Mostrar errores si existen
+            if (errores.length > 0) {
+                alert("Errores en los campos:\n" + errores.join("\n"));
+                console.log("Errores en los campos:\n" + errores.join("\n"));
+                return; // Detener ejecución si hay errores
+            }
+
     const customerData = customerType.value === 'individuo'
         ? {
             type: 'Individuo',
@@ -79,7 +141,7 @@ senderPdf.addEventListener('click', () => {
 
     text += `\n\tNúmero de transacción: ${transaccion}\n\tRealizar pago a número de cuenta: ${noCuenta}`;
 
-    const pdfNombre = `${customerData.name} ${customerData.apellidos}`;
+    const pdfNombre = `${customerData.name} ${customerData.apellidos ?? ''}`;
 
     // Esto de aquí hace la mágia como que no 🔥
     emailjs.send(serviceID, templateID, {
