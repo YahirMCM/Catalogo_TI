@@ -8,6 +8,11 @@ const totalAmount = document.getElementById('totalAmount');
 const itemsContainer = document.getElementById('items');
 const customerType = document.getElementById('customerType');
 const totalDespuesIVA = document.getElementById('totalDespuesIVA');
+// Aquí genero el número de transacción de manera global
+window.transaccion = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
+// ELIMINAR TRAS PRUEBAS DE FUNCIONALIDAD
+console.log("Desde Script Si sale")
+console.log(transaccion)
 // ID de servicio y plantilla
 const serviceID = 'service_m354r3d0nd4';
 const templateID = 'template_zoukpyn';
@@ -67,12 +72,12 @@ senderPdf.addEventListener('click', () => {
     // Total
     text += `Total antes de impuestos: $${totalAmount.textContent} MXN\nSe aplica un IVA de 16%\nTotal: $${totalDespuesIVA.textContent} MXN`;
     // Aquí generé el número de transacción
-    //const trans = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
-    const transac = window.transaccion;
+    //const transaccion = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
+    //window.transac = transaccion.toString();
     // Luego remplazar por nuestro número de cuenta o paypal donde depositar
     const noCuenta = "1234 5678 1234 5678";
 
-    text += `\n\tNúmero de transacción: ${transac}\n\tRealizar pago a número de cuenta: ${noCuenta}`;
+    text += `\n\tNúmero de transacción: ${transaccion}\n\tRealizar pago a número de cuenta: ${noCuenta}`;
 
     const pdfNombre = `${customerData.name} ${customerData.apellidos}`;
 

@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemsContainer = document.getElementById('items');
     const totalDespuesIVA = document.getElementById('totalDespuesIVA');
 
+    console.log(window.transaccion);
+
     // Inicialmente deshabilitar los botones
     generatePdfButton.disabled = true;
     sendPdfButton.disabled = true;
@@ -111,7 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let y = 20;
 
         // Aquí generé el número de transacción
-        const trans = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
+        //const trans = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
+        const trans = window.transaccion;
         // Luego remplazar por nuestro número de cuenta o paypal donde depositar
         const noCuenta = "1234 5678 1234 5678";
 
