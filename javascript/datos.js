@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const commonFields = document.getElementById('commonFields'); 
     const totalAmount = document.getElementById('totalAmount');
     const generatePdfButton = document.getElementById('generatePdf');
+    const sendPdfButton = document.getElementById('sendpdf'); // Botón de "Enviar por correo"
     const itemsContainer = document.getElementById('items');
     const totalDespuesIVA = document.getElementById('totalDespuesIVA');
 
-    // Inicialmente deshabilitar el botón
+    // Inicialmente deshabilitar los botones
     generatePdfButton.disabled = true;
+    sendPdfButton.disabled = true;
 
     // Mostrar campos específicos según el tipo de cliente y verificar campos
     customerType.addEventListener('change', (event) => {
@@ -19,12 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         organizationFields.style.display = value === 'organizacion' ? 'block' : 'none';
         commonFields.style.display = value ? 'block' : 'none';
 
-        actualizarEstadoBotonFactura(); // Verificar campos al seleccionar el tipo de cliente
+        actualizarEstadoBotones(); // Verificar campos al seleccionar el tipo de cliente
     });
 
     // Verificación en tiempo real de todos los campos del formulario
     document.querySelectorAll('#invoiceForm input, #invoiceForm select').forEach((input) => {
-        input.addEventListener('input', actualizarEstadoBotonFactura);
+        input.addEventListener('input', actualizarEstadoBotones);
     });
 
     function verificarCamposRequeridos() {
@@ -47,22 +49,23 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    function actualizarEstadoBotonFactura() {
-        if (verificarCamposRequeridos()) {
-            generatePdfButton.disabled = false;
-            generatePdfButton.style.backgroundColor = "#4CAF50";
-            generatePdfButton.onclick = null;
-        } else {
-            generatePdfButton.disabled = true;
-            generatePdfButton.style.backgroundColor = "grey";
-            generatePdfButton.onclick = () => alert("Para generar su factura, complete todos los campos requeridos.");
-        }
+    function actualizarEstadoBotones() {
+        const todosCamposLlenos = verificarCamposRequeridos();
+
+        // Habilitar/deshabilitar botón de PDF
+        generatePdfButton.disabled = !todosCamposLlenos;
+        generatePdfButton.style.backgroundColor = todosCamposLlenos ? "#4CAF50" : "grey";
+        generatePdfButton.onclick = todosCamposLlenos ? null : () => alert("Para generar su factura, complete todos los campos requeridos.");
+
+        // Habilitar/deshabilitar botón de enviar por correo
+        sendPdfButton.disabled = !todosCamposLlenos;
+        sendPdfButton.style.backgroundColor = todosCamposLlenos ? "#4CAF50" : "grey";
+        sendPdfButton.onclick = todosCamposLlenos ? null : () => alert("Para enviar la factura, complete todos los campos requeridos.");
     }
 
-    // Cargar productos desde el carrito
+    // Cargar productos desde el carrito (resto de la función sin cambios)
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     cargarProductos(carrito);
-
 
     function cargarProductos(carrito) {
         itemsContainer.innerHTML = ""; // Limpia el contenedor de items antes de cargar productos
