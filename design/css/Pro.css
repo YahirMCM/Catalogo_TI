@@ -532,6 +532,13 @@ svg {
     pointer-events: none;
 }
 
+img.centrada {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
 #introduccion {
     padding: 20px;
     background-color: #ffffff;
@@ -546,7 +553,7 @@ svg {
 
 #introduccion:hover {
     transform: translateY(-10px); 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 10px 2px rgba(255, 165, 0, 0.8); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 10px 10px rgba(255, 165, 0, 0.8); 
 }
 
 #introduccion p {
