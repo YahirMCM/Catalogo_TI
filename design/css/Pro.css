@@ -601,6 +601,16 @@ img.centrada {
     margin-bottom: 30px;
 }
 
+#productos article {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+}
+
+#productos article:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 10px 10px rgba(212, 0, 255, 0.8);
+}
+
 article {
     width: 30%;
     max-width: 400px;
