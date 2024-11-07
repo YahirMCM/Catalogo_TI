@@ -41,10 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
         descripcion.style.opacity = "0";
     });
 
-    // Abrir y cerrar carrito
+    // Abrir y cerrar carrito con el ícono
     carritoIcono.addEventListener('click', () => {
-        barraCarro.classList.add('open');
-        carritoOverlay.classList.add('open');
+        if (barraCarro.classList.contains('open')) {
+            barraCarro.classList.remove('open');
+            carritoOverlay.classList.remove('open');
+        } else {
+            barraCarro.classList.add('open');
+            carritoOverlay.classList.add('open');
+        }
     });
 
     cerrarCarro.addEventListener('click', () => {

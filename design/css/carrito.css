@@ -9,6 +9,21 @@
     border-radius: 50%;
     cursor: pointer;
     z-index: 1000;
+    transition: box-shadow 0.3s ease;
+}
+
+.carrito_compras:hover {
+    box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.8);
+}
+
+.carrito_compras:active {
+    animation: saltar 0.2s ease;
+}
+
+@keyframes saltar {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
 }
 
 .carrito_barra {
