@@ -684,10 +684,7 @@ button.agregar-carrito:hover {
 }
 
 #aviso-advertencia {
-    align-items: flex-start;
-    margin: 20px auto;
     padding: 20px;
-    max-width: 93%;
     background-color: rgba(226, 217, 92, 0.1);
     border-left: 3px solid #ff4800;
     border-radius: 6px;
@@ -696,6 +693,22 @@ button.agregar-carrito:hover {
     font-family: 'Poppins', sans-serif;
     color: #333;
     line-height: 1.4;
+    max-width: 93%;
+    margin: 20px auto;
+    transition: border 0.3s ease;
+}
+
+#aviso-advertencia:hover {
+    border-color: red;
+    animation: temblor 0.2s ease-in-out infinite;
+}
+
+/* Animacion chida de temblor */
+@keyframes temblor {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
 }
 
 #aviso-advertencia p:first-child {
