@@ -26,6 +26,19 @@
     100% { transform: translateY(0); }
 }
 
+.contador-carrito {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    display: none;
+}
+
 .carrito_barra {
     position: fixed;
     top: 0;
@@ -88,6 +101,10 @@
     background-color: #e0e0e0;
 }
 
+.carrito_barra button:active {
+    animation: brillo 0.3s ease, saltarEliminar 0.2s ease;
+}
+
 button.eliminar-todo {
     background-color: #cc0000;
     color: white;
@@ -104,10 +121,6 @@ button.eliminar-todo:hover {
 
 #generar-factura:hover {
     background-color: #7cb342;
-}
-
-.carrito_barra button:active {
-    animation: brillo 0.3s ease, saltarEliminar 0.2s ease;
 }
 
 @keyframes brillo {

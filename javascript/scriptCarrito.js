@@ -8,9 +8,107 @@ document.addEventListener("DOMContentLoaded", function () {
     const cerrarCarro = document.getElementById('cerrar_carro');
     const carritoOverlay = document.getElementById('capa_carro');
     const botonFactura = document.getElementById("generar-factura");
+    const contadorCarrito = document.getElementById("contador-carrito");
 
+    // Recuperar y actualizar carrito desde localStorage
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     actualizarCarrito();
+    actualizarContadorCarrito();
+
+    // Función para actualizar el contador de productos en el carrito
+    function actualizarContadorCarrito() {
+        const totalProductos = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+        if (totalProductos > 0) {
+            contadorCarrito.textContent = totalProductos;
+            contadorCarrito.style.display = "inline";
+        } else {
+            contadorCarrito.style.display = "none";
+        }
+    }
+
+    // Función para agregar productos al carrito y actualizar el contador
+    function agregarAlCarrito(producto, precio) {
+        let itemEnCarrito = carrito.find(item => item.producto === producto);
+
+        if (itemEnCarrito) {
+            if (itemEnCarrito.cantidad < 5) {
+                itemEnCarrito.cantidad++;
+            } else {
+                alert("Solo puedes agregar un máximo de 5 unidades por producto.");
+            }
+        } else {
+            if (carrito.length < 9) {
+                carrito.push({ producto, precio, cantidad: 1 });
+            } else {
+                alert("No puedes agregar más de 9 productos diferentes en total.");
+            }
+        }
+        actualizarCarrito();
+        guardarCarrito();
+        actualizarContadorCarrito();
+    }
+
+    // Función para actualizar el contenido del carrito
+    function actualizarCarrito() {
+        const carritoContenido = document.getElementById("carrito-contenido");
+        carritoContenido.innerHTML = "";
+
+        carrito.forEach((item, index) => {
+            const carritoItem = document.createElement("div");
+            carritoItem.innerHTML = `${item.producto} (x${item.cantidad}) - $${item.precio * item.cantidad} MXN 
+                <button onclick="eliminarDelCarrito(${index})">Eliminar</button>`;
+            carritoContenido.appendChild(carritoItem);
+        });
+
+        const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+        document.getElementById("total-carrito").innerText = `Total: $${total} MXN`;
+    }
+
+    // Función para eliminar un producto del carrito y actualizar el contador
+    function eliminarDelCarrito(index) {
+        let item = carrito[index];
+        item.cantidad--;
+        if (item.cantidad <= 0) {
+            carrito.splice(index, 1);
+        }
+        actualizarCarrito();
+        guardarCarrito();
+        actualizarContadorCarrito();
+    }
+
+    // Función para eliminar todos los productos del carrito y actualizar el contador
+    function eliminarTodoCarrito() {
+        carrito = [];
+        actualizarCarrito();
+        guardarCarrito();
+        actualizarContadorCarrito();
+    }
+
+    // Función para guardar el carrito en localStorage
+    function guardarCarrito() {
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    // Abrir y cerrar carrito con el ícono
+    carritoIcono.addEventListener('click', () => {
+        if (barraCarro.classList.contains('open')) {
+            barraCarro.classList.remove('open');
+            carritoOverlay.classList.remove('open');
+        } else {
+            barraCarro.classList.add('open');
+            carritoOverlay.classList.add('open');
+        }
+    });
+
+    cerrarCarro.addEventListener('click', () => {
+        barraCarro.classList.remove('open');
+        carritoOverlay.classList.remove('open');
+    });
+
+    carritoOverlay.addEventListener('click', () => {
+        barraCarro.classList.remove('open');
+        carritoOverlay.classList.remove('open');
+    });
 
     // Funcionalidad de los botones "Ver más"
     botones.forEach(boton => {
@@ -40,83 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
         descripcion.style.transition = "opacity 0.3s ease";
         descripcion.style.opacity = "0";
     });
-
-    // Abrir y cerrar carrito con el ícono
-    carritoIcono.addEventListener('click', () => {
-        if (barraCarro.classList.contains('open')) {
-            barraCarro.classList.remove('open');
-            carritoOverlay.classList.remove('open');
-        } else {
-            barraCarro.classList.add('open');
-            carritoOverlay.classList.add('open');
-        }
-    });
-
-    cerrarCarro.addEventListener('click', () => {
-        barraCarro.classList.remove('open');
-        carritoOverlay.classList.remove('open');
-    });
-
-    carritoOverlay.addEventListener('click', () => {
-        barraCarro.classList.remove('open');
-        carritoOverlay.classList.remove('open');
-    });
-
-    // Funciones del carrito
-    function agregarAlCarrito(producto, precio) {
-        let itemEnCarrito = carrito.find(item => item.producto === producto);
-
-        if (itemEnCarrito) {
-            if (itemEnCarrito.cantidad < 5) {
-                itemEnCarrito.cantidad++;
-            } else {
-                alert("Solo puedes agregar un máximo de 5 unidades por producto.");
-            }
-        } else {
-            if (carrito.length < 9) {
-                carrito.push({ producto, precio, cantidad: 1 });
-            } else {
-                alert("No puedes agregar más de 9 productos diferentes en total.");
-            }
-        }
-        actualizarCarrito();
-        guardarCarrito();
-    }
-
-    function actualizarCarrito() {
-        const carritoContenido = document.getElementById("carrito-contenido");
-        carritoContenido.innerHTML = "";
-
-        carrito.forEach((item, index) => {
-            const carritoItem = document.createElement("div");
-            carritoItem.innerHTML = `${item.producto} (x${item.cantidad}) - $${item.precio * item.cantidad} MXN 
-                <button onclick="eliminarDelCarrito(${index})">Eliminar</button>`;
-            carritoContenido.appendChild(carritoItem);
-        });
-
-        const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-        document.getElementById("total-carrito").innerText = `Total: $${total} MXN`;
-    }
-
-    function eliminarDelCarrito(index) {
-        let item = carrito[index];
-        item.cantidad--;
-        if (item.cantidad <= 0) {
-            carrito.splice(index, 1);
-        }
-        actualizarCarrito();
-        guardarCarrito();
-    }
-
-    function eliminarTodoCarrito() {
-        carrito = [];
-        actualizarCarrito();
-        guardarCarrito();
-    }
-
-    function guardarCarrito() {
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-    }
 
     // Redirigir a factura.html en lugar de generar el PDF directamente
     if (botonFactura) {
