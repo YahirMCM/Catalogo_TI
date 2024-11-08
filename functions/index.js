@@ -17,7 +17,7 @@
 // });
 
 const functions = require("firebase-functions");
-const stripe = require("stripe")("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");
+const stripe = require("stripe")("sk_test_51QIditD6GoPReWc50k0jLZDKlVpYPcA8SDTsuqef3CIJzvOQkA5sRhdo6MVVHGCWTSzyFKybNQ9JGONIaVqVDPX600ruwNS73x");
 
 exports.crearSesionPago = functions.https.onRequest(async (req, res) => {
   try {
@@ -37,8 +37,8 @@ exports.crearSesionPago = functions.https.onRequest(async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "exito.html",
-      cancel_url: "https://tu-sitio.com/cancelar",
+      success_url: "https://yahirmcm.github.io/Catalogo_TI/exito.html",
+      cancel_url: "https://yahirmcm.github.io/Catalogo_TI/cancelacion.html",
     });
 
     res.json({id: session.id});

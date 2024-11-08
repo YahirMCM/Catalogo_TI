@@ -129,7 +129,7 @@
         <script>
         document.addEventListener("DOMContentLoaded", function() {
         // Inicializa Stripe con tu clave pública
-        const stripe = Stripe('pk_live_51QIditD6GoPReWc55bcgSRF0NdSkoPbflca9fRaKPGColFjkhmeDwV3t7pVVx76atmhQIYvCeQVvjIBR8kx9IBxx00sP1xP1Jj'); // Reemplaza con tu clave pública de Stripe
+        const stripe = Stripe('pk_test_51QIditD6GoPReWc5t3sTKDTOCmBk0YXOOp3CaWMwTWa4qqJedsUQOExlqm2ivBuctwkEH2G0SBpy8BWaznIHyHjJ00ZjFGSC11'); // Reemplaza con tu clave pública de Stripe
 
         async function pagarCarrito() {
             // Obtenemos el carrito de localStorage o puedes modificar esto según tu lógica de carrito
@@ -153,6 +153,38 @@
             alert("Hubo un problema al iniciar el pago. Por favor, intenta de nuevo.");
             }
         }
+        
+        async function pagarCarrito() {
+  console.log("Botón de pago clicado");
+
+  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  console.log("Carrito:", carrito);
+
+  try {
+    const response = await fetch('', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ carrito }), // Envía el carrito al backend
+    });
+
+    const session = await response.json();
+    console.log("Respuesta de Firebase:", session);
+
+    if (session.id) {
+      stripe.redirectToCheckout({ sessionId: session.id });
+    } else {
+      console.error("Error en la respuesta de sesión:", session);
+      alert("Hubo un problema al iniciar el pago. Verifica la consola para más detalles.");
+    }
+  } catch (error) {
+    console.error("Error al iniciar el pago:", error);
+    alert("Hubo un problema al iniciar el pago. Por favor, intenta de nuevo.");
+  }
+}
+
+
 
         // Escucha el clic en el botón de pago
         document.getElementById("generar-factura").addEventListener("click", pagarCarrito);
