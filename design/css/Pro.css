@@ -635,11 +635,31 @@ button.ver-mas, button.agregar-carrito {
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
-button.ver-mas:hover {
+button.ver-mas:hover, button.agregar-carrito:hover {
     background-color: #3700b3;
+}
+
+button.ver-mas:active, button.agregar-carrito:active {
+    animation: brillo 0.3s ease, saltar 0.2s ease;
+}
+
+@keyframes brillo {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes saltar {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
 }
 
 button.agregar-carrito {
