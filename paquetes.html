@@ -90,8 +90,13 @@
                 <p class="descripcion-adicional">Ideal para empresas que recién inician y requieren una infraestructura básica. Incluye la configuración inicial del correo electrónico con hasta 50 cuentas, así como soporte para mantenimiento de equipos de hardware para hasta 5 equipos, asegurando que tus sistemas estén operativos en todo momento. Perfecto para comenzar a digitalizar tu empresa.</p>
                 <button class="ver-mas">Ver más detalles</button>
                 <button class="agregar-carrito" onclick="agregarAlCarrito('Paquete Básico', 4500)">Añadir al carrito</button>
+                <button id= "checkout-button">Pagar de una</button>
             </article>
-        
+
+      <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+      <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-functions.js"></script>
+      <script type="module" src="javascript/checkout.js"></script>
+      <script src="https://js.stripe.com/v3/"></script>
             <article id="paqueteEmpresa">
                 <img src="design/img/Paquetes/1729486755497.png" alt="Paquete de Empresa" width="500" height="150" />
                 <ul>
