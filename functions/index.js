@@ -37,7 +37,7 @@ exports.crearSesionPago = functions.https.onRequest(async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "/exito.html",
+      success_url: "exito.html",
       cancel_url: "https://tu-sitio.com/cancelar",
     });
 
