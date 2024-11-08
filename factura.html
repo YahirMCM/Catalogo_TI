@@ -123,68 +123,38 @@
             </svg>
         </div>
         
-        
         <script src="https://js.stripe.com/v3/"></script>
-        
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        // Inicializa Stripe con tu clave pública
+    <script>
         const stripe = Stripe('pk_test_51QIditD6GoPReWc5t3sTKDTOCmBk0YXOOp3CaWMwTWa4qqJedsUQOExlqm2ivBuctwkEH2G0SBpy8BWaznIHyHjJ00ZjFGSC11'); // Reemplaza con tu clave pública de Stripe
 
         async function pagarCarrito() {
-            // Obtenemos el carrito de localStorage o puedes modificar esto según tu lógica de carrito
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
             try {
-            const response = await fetch('https://crearsesionpago-kgrlbmj4ra-uc.a.run.app', { 
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ carrito }), // Envía el carrito al backend
-            });
+                const response = await fetch('ttps://crearsesionpago-kgrlbmj4ra-uc.a.run.ap', { // Reemplaza con la URL de tu función
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ carrito }), // Envía el carrito al backend
+                });
 
-            const session = await response.json();
-
-            // Redirigir al usuario a Stripe Checkout
-            stripe.redirectToCheckout({ sessionId: session.id });
+                const session = await response.json();
+                
+                if (session.id) {
+                    stripe.redirectToCheckout({ sessionId: session.id });
+                } else {
+                    console.error("Error en la respuesta de sesión:", session);
+                    alert("Hubo un problema al iniciar el pago. Verifica la consola para más detalles.");
+                }
             } catch (error) {
-            console.error("Error al iniciar el pago:", error);
-            alert("Hubo un problema al iniciar el pago. Por favor, intenta de nuevo.");
+                console.error("Error al iniciar el pago:", error);
+                alert("Hubo un problema al iniciar el pago. Por favor, intenta de nuevo.");
             }
         }
-        
-        async function pagarCarrito() {
-  console.log("Botón de pago clicado");
 
-  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  console.log("Carrito:", carrito);
-
-  try {
-    const response = await fetch('', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ carrito }), // Envía el carrito al backend
-    });
-
-    const session = await response.json();
-    console.log("Respuesta de Firebase:", session);
-
-    if (session.id) {
-      stripe.redirectToCheckout({ sessionId: session.id });
-    } else {
-      console.error("Error en la respuesta de sesión:", session);
-      alert("Hubo un problema al iniciar el pago. Verifica la consola para más detalles.");
-    }
-  } catch (error) {
-    console.error("Error al iniciar el pago:", error);
-    alert("Hubo un problema al iniciar el pago. Por favor, intenta de nuevo.");
-  }
-}
-
-
+        document.getElementById("generar-factura").addEventListener("click", pagarCarrito);
+    </script>
 
         // Escucha el clic en el botón de pago
         document.getElementById("generar-factura").addEventListener("click", pagarCarrito);
