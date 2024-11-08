@@ -1,5 +1,5 @@
+
 const functions = require("firebase-functions");
-const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
 
 exports.createStripeCkeckout = functions.https.onCall(async (data, context) => {
   const stripe = require("stripe")(functions.config().stripe.secret_key);
