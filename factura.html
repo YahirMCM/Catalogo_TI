@@ -68,6 +68,7 @@
         
             <button type="button" id="generatePdf">Generar PDF</button>
             <button type="button" id="sendpdf">Enviar por correo</button>
+            <button type="button" id="generar-factura">Pagar</button>
         </form>        
     </div>
 
@@ -122,6 +123,40 @@
         </svg>
     </div>
     
+    document.addEventListener("DOMContentLoaded", function() {
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <script>
+      // Inicializa Stripe con tu clave pública
+      const stripe = Stripe('pk_live_51QIditD6GoPReWc55bcgSRF0NdSkoPbflca9fRaKPGColFjkhmeDwV3t7pVVx76atmhQIYvCeQVvjIBR8kx9IBxx00sP1xP1Jj'); // Reemplaza con tu clave pública de Stripe
+
+      async function pagarCarrito() {
+        // Obtenemos el carrito de localStorage o puedes modificar esto según tu lógica de carrito
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        try {
+          const response = await fetch('https://crearsesionpago-kgrlbmj4ra-uc.a.run.app', { 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ carrito }), // Envía el carrito al backend
+          });
+
+          const session = await response.json();
+
+          // Redirigir al usuario a Stripe Checkout
+          stripe.redirectToCheckout({ sessionId: session.id });
+        } catch (error) {
+          console.error("Error al iniciar el pago:", error);
+          alert("Hubo un problema al iniciar el pago. Por favor, intenta de nuevo.");
+        }
+      }
+
+      // Escucha el clic en el botón de pago
+      document.getElementById("generar-factura").addEventListener("click", pagarCarrito);
+    </script>
+    });
     
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
