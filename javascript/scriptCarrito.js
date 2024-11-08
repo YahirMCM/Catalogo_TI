@@ -67,10 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let itemEnCarrito = carrito.find(item => item.producto === producto);
 
         if (itemEnCarrito) {
-            if (itemEnCarrito.cantidad < 3) {
+            if (itemEnCarrito.cantidad < 5) {
                 itemEnCarrito.cantidad++;
             } else {
-                alert("Solo puedes agregar un máximo de 3 unidades por producto.");
+                alert("Solo puedes agregar un máximo de 5 unidades por producto.");
             }
         } else {
             if (carrito.length < 9) {
