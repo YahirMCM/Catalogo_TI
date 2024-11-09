@@ -91,7 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         totalNeto = total + (total * 0.16)
         totalDespuesIVA.textContent = totalNeto.toFixed(1);
     }
-    
+    console.log(totalNeto);
+        window.totalNeto;
 
     // Generar el PDF con los datos
     generatePdfButton.addEventListener('click', () => {

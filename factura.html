@@ -68,7 +68,11 @@
             
                 <button type="button" id="generatePdf">Generar PDF</button>
                 <button type="button" id="sendpdf">Enviar por correo</button>
-                <button type="button" id="generar-factura">Pagar</button>
+                <br><br>
+                <strong>Métodos de Pago: </strong>
+                <button type="button" id="generar-factura">Pagar con Tarjeta</button>
+                <br><br>
+                <div id="paypal-button-container"></div>
             </form>        
         </div>
 
@@ -165,6 +169,10 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
         <script src="javascript/datos.js"></script>
+
+        <script src="https://www.paypal.com/sdk/js?client-id=AWkWUbutHTHqsPtyEhFaLcLPLxGKzpBCQdovIJjlqbv4-oxlJPasMYaorQSjeYE65fgv2KbpAX7U35YU&currency=MXN&disable-funding=card"></script>
+        <script src="./javascript/scriptPayPal_Pago.js"></script>
+
     </body>
 
 </html>
