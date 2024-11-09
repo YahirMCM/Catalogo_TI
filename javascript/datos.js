@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log(window.transaccion);
 
+    document.getElementById("generar-factura").addEventListener("click", function() {
+        window.location.href = "https://yahirmcm.github.io/Catalogo_TI/pago.html"; 
+    });
+
     // Inicialmente deshabilitar los botones
     generatePdfButton.disabled = true;
     sendPdfButton.disabled = true;
