@@ -185,9 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Luego remplazar por nuestro número de cuenta o paypal donde depositar
         const noCuenta = "1234 5678 1234 5678";
 
-        // Encabezado del PDF
+        // Encabezado
         doc.setFontSize(22);
         doc.text("Factura de Compra", 105, y, { align: "center" });
+        y += 15;
+
+        // Línea divisora
+        doc.setLineWidth(0.5);
+        doc.line(10, y, 200, y);
         y += 10;
 
         // Fecha
@@ -198,43 +203,132 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Datos del cliente
         doc.setFontSize(16);
+        doc.text("Datos del Cliente:", 10, y);
+        y += 8;
+
+        doc.setFontSize(12);
         doc.text(`Tipo de Cliente: ${customerData.type}`, 10, y);
-        y += 10;
+        y += 8;
         doc.text(`Nombre: ${customerData.name}`, 10, y);
-        y += 10;
-        
+        y += 8;
+
         if (customerData.apellidos) {
             doc.text(`Apellidos: ${customerData.apellidos}`, 10, y);
-            y += 10;
+            y += 8;
         }
 
         if (customerData.dni || customerData.taxId) {
             doc.text(`RFC: ${customerData.dni || customerData.taxId}`, 10, y);
-            y += 10;
+            y += 8;
         }
 
         doc.text(`Código Postal: ${postalCode}`, 10, y);
-        y += 10;
+        y += 8;
         doc.text(`Correo: ${email}`, 10, y);
+        y += 15;
+
+        // Línea divisora
+        doc.line(10, y, 200, y);
         y += 10;
 
-        // Productos del carrito
+        // Tabla de Productos
         doc.setFontSize(14);
+        doc.text("Detalles del Pedido:", 10, y);
+        y += 10;
+
+        // carrito.forEach((item, index) => {
+        //         const text = `${index + 1}. ${item.producto} \t-\t Cantidad: ${item.cantidad} \t- $${item.precio * item.cantidad} MXN`;
+        //         doc.text(text, 10, y);
+        //         y += 10;
+        //     });
+
         carrito.forEach((item, index) => {
-            const text = `${index + 1}. ${item.producto} - Cantidad: ${item.cantidad} - $${item.precio * item.cantidad} MXN`;
-            doc.text(text, 10, y);
+            doc.text(`${index + 1}. ${item.producto}`, 10, y);
+            doc.text(`Cantidad: ${item.cantidad}`, 90, y);
+            doc.text(`$${(item.precio * item.cantidad).toFixed(2)} MXN`, 170, y, { align: "right" });
             y += 10;
         });
 
-        // Total
+        // Línea divisora
         y += 10;
+        doc.line(10, y, 200, y);
+        y += 10;
+
+        // Total antes de impuestos y con IVA
+        doc.setFontSize(14);
+        doc.text("Detalles de su compra:", 10, y);
+
         doc.setFontSize(16);
-        doc.text(`Total antes de impuestos: $${totalAmount.textContent} MXN`, 10, y); y += 10;
-        doc.text(`IVA: 16%`, 10, y); y += 10;
-        doc.text(`Total: $${totalDespuesIVA.textContent} MXN`, 10, y); y += 20;
-        doc.text(`Número de transacción: ${trans}`, 10, y); y += 10;
+        doc.text(`Total antes de impuestos: $${totalAmount.textContent} MXN`, 10, y);
+        y += 10;
+        doc.text("IVA: 16%", 10, y);
+        y += 10;
+        doc.text(`Total: $${totalDespuesIVA.textContent} MXN`, 10, y);
+        y += 20;
+
+        // Información de Transacción y Pago
+        doc.setFontSize(14);
+        doc.text("Detalles para pago en banco:", 10, y);
+        doc.setFontSize(12);
+        doc.text(`Número de transacción: ${trans}`, 10, y);
+        y += 10;
         doc.text(`Realizar pago a número de cuenta: ${noCuenta}`, 10, y);
+
         // Descargar el PDF
         doc.save("Factura_DTT.pdf");
+
+        // ANTIGUO PDF POR SI SE REQUIERE ALGO DE AHÍ
+
+        // // Encabezado del PDF
+        // doc.setFontSize(22);
+        // doc.text("Factura de Compra", 105, y, { align: "center" });
+        // y += 10;
+
+        // // Fecha
+        // const fecha = new Date().toLocaleDateString();
+        // doc.setFontSize(12);
+        // doc.text(`Fecha: ${fecha}`, 10, y);
+        // y += 10;
+
+        // // Datos del cliente
+        // doc.setFontSize(16);
+        // doc.text(`Tipo de Cliente: ${customerData.type}`, 10, y);
+        // y += 10;
+        // doc.text(`Nombre: ${customerData.name}`, 10, y);
+        // y += 10;
+        
+        // if (customerData.apellidos) {
+        //     doc.text(`Apellidos: ${customerData.apellidos}`, 10, y);
+        //     y += 10;
+        // }
+
+        // if (customerData.dni || customerData.taxId) {
+        //     doc.text(`RFC: ${customerData.dni || customerData.taxId}`, 10, y);
+        //     y += 10;
+        // }
+
+        // doc.text(`Código Postal: ${postalCode}`, 10, y);
+        // y += 10;
+        // doc.text(`Correo: ${email}`, 10, y);
+        // y += 10;
+
+        // // Productos del carrito
+        // doc.setFontSize(14);
+        // carrito.forEach((item, index) => {
+        //     const text = `${index + 1}. ${item.producto} - Cantidad: ${item.cantidad} - $${item.precio * item.cantidad} MXN`;
+        //     doc.text(text, 10, y);
+        //     y += 10;
+        // });
+
+        // // Total
+        // y += 10;
+        // doc.setFontSize(16);
+        // doc.text(`Total antes de impuestos: $${totalAmount.textContent} MXN`, 10, y); y += 10;
+        // doc.text(`IVA: 16%`, 10, y); y += 10;
+        // doc.text(`Total: $${totalDespuesIVA.textContent} MXN`, 10, y); y += 20;
+        // doc.text(`Número de transacción: ${trans}`, 10, y); y += 10;
+        // doc.text(`Realizar pago a número de cuenta: ${noCuenta}`, 10, y);
+        // // Descargar el PDF
+        // doc.save("Factura_DTT.pdf");
     });
 });

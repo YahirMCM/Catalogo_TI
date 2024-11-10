@@ -124,18 +124,15 @@ senderPdf.addEventListener('click', () => {
         text += `RFC: ${customerData.dni || customerData.taxId}\nCódigo Postal: ${postalCode}\n`;
     }
 
-    text += "A continuación se muestra un resumen de la compra:\n";
+    text += "A continuación se muestra un resumen de la compra:\n\n";
 
     // Por cada item dentro del carrito lo mete en el mensaje
     carrito.forEach((item, index) => {
-        text += `${index + 1}. ${item.producto} - Cantidad: ${item.cantidad} - $${item.precio * item.cantidad} MXN\n`;
+        text += `\t${index + 1}. ${item.producto} - Cantidad: ${item.cantidad} - $${item.precio * item.cantidad} MXN\n`;
     });
 
     // Total
-    text += `Total antes de impuestos: $${totalAmount.textContent} MXN\nSe aplica un IVA de 16%\nTotal: $${totalDespuesIVA.textContent} MXN`;
-    // Aquí generé el número de transacción
-    //const transaccion = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
-    //window.transac = transaccion.toString();
+    text += `\nTotal antes de impuestos: $${totalAmount.textContent} MXN\nSe aplica un IVA de 16%\nTotal: $${totalDespuesIVA.textContent} MXN\n`;
     // Luego remplazar por nuestro número de cuenta o paypal donde depositar
     const noCuenta = "1234 5678 1234 5678";
 

@@ -1,4 +1,4 @@
-console.log(window.totalNeto)
+console.log(window.totalNeto);
 const totalAPagar = window.totalNeto;
 paypal.Buttons({
     createOrder: function(data, actions) {
@@ -13,7 +13,7 @@ paypal.Buttons({
     },
     onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
-            alert("Pago realizado con éxito a nombre de " + details.payer.name.given_name)
+            alert(`Pago realizado con éxito a nombre de: ${details.payer.name.given_name} ${details.payer.name.surname}\nId de compra: ${details.id}`)
             console.log(details);
         });
     }
