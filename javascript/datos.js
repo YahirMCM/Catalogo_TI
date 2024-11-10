@@ -255,10 +255,11 @@ document.addEventListener('DOMContentLoaded', () => {
         y += 10;
 
         // Total antes de impuestos y con IVA
-        doc.setFontSize(14);
-        doc.text("Detalles de su compra:", 10, y);
-
         doc.setFontSize(16);
+        doc.text("Detalles de su compra:", 10, y);
+        y += 10;
+
+        doc.setFontSize(14);
         doc.text(`Total antes de impuestos: $${totalAmount.textContent} MXN`, 10, y);
         y += 10;
         doc.text("IVA: 16%", 10, y);
@@ -267,9 +268,10 @@ document.addEventListener('DOMContentLoaded', () => {
         y += 20;
 
         // Información de Transacción y Pago
-        doc.setFontSize(14);
+        doc.setFontSize(16);
         doc.text("Detalles para pago en banco:", 10, y);
-        doc.setFontSize(12);
+        y += 10;
+        doc.setFontSize(14);
         doc.text(`Número de transacción: ${trans}`, 10, y);
         y += 10;
         doc.text(`Realizar pago a número de cuenta: ${noCuenta}`, 10, y);
