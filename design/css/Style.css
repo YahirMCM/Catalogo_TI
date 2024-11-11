@@ -358,7 +358,6 @@ button.agregar-carrito:hover {
     z-index: 1000;
 }
   
-  /* Estilo de barrita */
   .carrito_barra {
     position: fixed;
     top: 0;
@@ -434,31 +433,27 @@ button.agregar-carrito:hover {
     margin-bottom: 20px;
 }
 
-/* Estilo para el contenedor de la cuadrícula */
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-    gap: 10px; /* Espacio entre las imágenes */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     max-width: 960px;
-    margin: 50px auto; /* Centrar la cuadrícula */
+    margin: 50px auto;
     padding: 10px;
 }
 
-/* Imágenes dentro de la cuadrícula */
 .image-grid img {
-    width: 100%; /* Asegura que las imágenes se ajusten al contenedor */
+    width: 100%;
     height: auto;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    transition: transform 0.3s ease; /* Efecto de hover */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-/* Efecto al pasar el cursor sobre la imagen */
 .image-grid img:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    transform: scale(1.05);
 }
 
-/* PARA AGREGAR INFORMACION DE CONTACTO */
 #RegistroContacto {
     max-width: 800px;
     margin: 50px auto;
@@ -538,9 +533,6 @@ button.agregar-carrito:hover {
     margin-bottom: 10px;
 }
 
-/* CONTACTANOS MODIFICACION DEL MAPA ----------------------------------------------------------------------------------------------- */
-
-/* Sección de Ubicación */
 #ubicacion-empresa {
     max-width: 1200px;
     margin: 40px auto;
@@ -556,7 +548,6 @@ button.agregar-carrito:hover {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Encabezado de la Sección */
 .ubicacion-header {
     text-align: center;
     margin-bottom: 25px;
@@ -574,7 +565,6 @@ button.agregar-carrito:hover {
     color: #555;
 }
 
-/* Diseño en dos columnas con alineación */
 .ubicacion-layout {
     display: flex;
     flex-wrap: wrap;
@@ -583,7 +573,6 @@ button.agregar-carrito:hover {
     justify-content: space-between;
 }
 
-/* Texto de Ubicación con centrado */
 .ubicacion-texto {
     flex: 1;
     min-width: 300px;
@@ -592,8 +581,8 @@ button.agregar-carrito:hover {
     background-color: #f5f5f5;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Centrado horizontal */
-    display: flex; /* Centrado vertical */
+    text-align: center;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
@@ -611,7 +600,6 @@ button.agregar-carrito:hover {
     margin-bottom: 8px;
 }
 
-/* Contenedor del Mapa */
 .map-container {
     flex: 2;
     min-width: 400px;
@@ -625,14 +613,12 @@ button.agregar-carrito:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Mapa Iframe */
 .mapa-iframe {
     width: 100%;
     height: 450px;
     border: 0;
 }
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
-/* Header de la página de Contacto */
+
 .contact-header {
     text-align: center;
     padding: 40px 20px;
@@ -655,7 +641,6 @@ button.agregar-carrito:hover {
     margin: 0;
 }
 
-/* Sección de Contacto */
 .contact-section {
     max-width: 800px;
     margin: 0 auto 40px;
@@ -672,7 +657,6 @@ button.agregar-carrito:hover {
     text-align: center;
 }
 
-/* Listado de Contacto */
 .contact-list,
 .social-list {
     list-style: none;
@@ -702,7 +686,6 @@ button.agregar-carrito:hover {
     text-decoration: underline;
 }
 
-/* Iconos */
 .contact-list i,
 .social-list i {
     font-size: 24px;

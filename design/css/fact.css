@@ -6,8 +6,8 @@
 }
 
 .deshabilitado {
-    pointer-events: none; /* Impide clics y eventos */
-    opacity: 0.5;         /* Reduce la opacidad para indicar estado deshabilitado */
+    pointer-events: none;
+    opacity: 0.5;
   }
 
 body {
@@ -111,7 +111,6 @@ svg {
     100% { stroke-dasharray: 10, 0; opacity: 0; }
 }
 
-/* WRITING */
 #line-1 {
     opacity: 0;
     animation: writing 1s 0.75s linear forwards infinite;

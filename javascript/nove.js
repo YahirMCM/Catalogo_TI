@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // --- Reproducción Automática de Videos de YouTube ---
     const iframes = document.querySelectorAll('.youtube-video');
 
     const videoObserverOptions = {
-        root: null, // Usar el viewport como referencia
-        threshold: 0.5 // Al menos el 50% del iframe debe ser visible
+        root: null,
+        threshold: 0.5
     };
 
     const videoObserver = new IntersectionObserver((entries) => {
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (entry.isIntersecting) {
                 const videoSrc = iframe.getAttribute('data-src');
                 if (!iframe.src) {
-                    iframe.src = videoSrc; // Asignar src para cargar el video
+                    iframe.src = videoSrc;
                 }
             }
         });
@@ -22,12 +21,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     iframes.forEach(iframe => videoObserver.observe(iframe));
 
-    // --- Animación de Futuros Productos al Desplazarse ---
     const productos = document.querySelectorAll('#futuros_productos .producto-card');
 
     const productosObserverOptions = {
         root: null,
-        threshold: 0.2 // Al menos un 20% del producto debe ser visible
+        threshold: 0.2
     };
 
     const productosObserver = new IntersectionObserver((entries) => {

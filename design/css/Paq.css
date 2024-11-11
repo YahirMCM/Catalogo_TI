@@ -303,7 +303,6 @@ button.agregar-carrito:hover {
     margin-bottom: 8px;
 }
 
-/* Inicia el logo */
 .logo-container {
     width: 144px;
     height: 144px;
@@ -311,7 +310,7 @@ button.agregar-carrito:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra coqueta a ver si se ve */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo-container img {
@@ -319,5 +318,3 @@ button.agregar-carrito:hover {
     height: 100%;
     object-fit: cover; 
 }
-
-/* Hasta acá llega el logo */

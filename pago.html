@@ -93,7 +93,7 @@
     <script>
         function formatCardNumber() {
             const cardNumberField = document.getElementById("cardNumber");
-            let cardNumber = cardNumberField.value.replace(/\D/g, '').substring(0, 16); // Solo dígitos y máximo 16
+            let cardNumber = cardNumberField.value.replace(/\D/g, '').substring(0, 16);
             let formattedCardNumber = cardNumber.match(/.{1,4}/g)?.join(" ") || cardNumber;
             cardNumberField.value = formattedCardNumber;
         }
@@ -110,7 +110,6 @@
                 document.getElementById("cardNumberError").style.display = "none";
             }
 
-            // Fecha de expiración: formato MM/AA
             const expiryDate = document.getElementById("expiryDate").value;
             if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
                 document.getElementById("expiryDateError").style.display = "block";
@@ -128,7 +127,6 @@
                 document.getElementById("cvvError").style.display = "none";
             }
 
-            // Nombre en la tarjeta: no puede estar vacío
             const nameOnCard = document.getElementById("nameOnCard").value;
             if (nameOnCard.trim() === "") {
                 document.getElementById("nameOnCardError").style.display = "block";
@@ -137,9 +135,8 @@
                 document.getElementById("nameOnCardError").style.display = "none";
             }
 
-            // Si todo es válido, redirige a otra página (simulación de pago completado)
             if (valid) {
-                window.location.href = "https://yahirmcm.github.io/Catalogo_TI/exito.html"; // Cambia esto a la URL deseada
+                window.location.href = "https://yahirmcm.github.io/Catalogo_TI/exito.html";
             }
         }
     </script>

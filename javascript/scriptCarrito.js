@@ -1,7 +1,4 @@
-// Script encargado de gestionar la interactividad de la página al permitir mostrar u ocultar detalles de productos, controlar la apertura y cierre del carrito de compras con almacenamiento persistente, y redirigir a la página de facturación.
-
 document.addEventListener("DOMContentLoaded", function () {
-    // Selección de elementos
     const botones = document.querySelectorAll(".ver-mas");
     const carritoIcono = document.getElementById('emoji_carrito');
     const barraCarro = document.getElementById('barrita');
@@ -10,12 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const botonFactura = document.getElementById("generar-factura");
     const contadorCarrito = document.getElementById("contador-carrito");
 
-    // Recuperar y actualizar carrito desde localStorage
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     actualizarCarrito();
     actualizarContadorCarrito();
 
-    // Función para actualizar el contador de productos en el carrito
     function actualizarContadorCarrito() {
         const totalProductos = carrito.reduce((sum, item) => sum + item.cantidad, 0);
         if (totalProductos > 0) {
@@ -26,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Función para agregar productos al carrito y actualizar el contador
     function agregarAlCarrito(producto, precio) {
         let itemEnCarrito = carrito.find(item => item.producto === producto);
 
@@ -48,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
         actualizarContadorCarrito();
     }
 
-    // Función para actualizar el contenido del carrito
     function actualizarCarrito() {
         const carritoContenido = document.getElementById("carrito-contenido");
         carritoContenido.innerHTML = "";
@@ -64,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("total-carrito").innerText = `Total: $${total} MXN`;
     }
 
-    // Función para eliminar un producto del carrito y actualizar el contador
     function eliminarDelCarrito(index) {
         let item = carrito[index];
         item.cantidad--;
@@ -76,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
         actualizarContadorCarrito();
     }
 
-    // Función para eliminar todos los productos del carrito y actualizar el contador
     function eliminarTodoCarrito() {
         carrito = [];
         actualizarCarrito();
@@ -84,12 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
         actualizarContadorCarrito();
     }
 
-    // Función para guardar el carrito en localStorage
     function guardarCarrito() {
         localStorage.setItem('carrito', JSON.stringify(carrito));
     }
 
-    // Abrir y cerrar carrito con el ícono
     carritoIcono.addEventListener('click', () => {
         if (barraCarro.classList.contains('open')) {
             barraCarro.classList.remove('open');
@@ -110,7 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
         carritoOverlay.classList.remove('open');
     });
 
-    // Funcionalidad de los botones "Ver más"
     botones.forEach(boton => {
         boton.addEventListener("click", function () {
             const descripcion = boton.previousElementSibling;
@@ -139,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function () {
         descripcion.style.opacity = "0";
     });
 
-    // Redirigir a factura.html en lugar de generar el PDF directamente
     if (botonFactura) {
         botonFactura.addEventListener("click", () => {
             const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
@@ -148,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Exponer funciones globalmente
     window.agregarAlCarrito = agregarAlCarrito;
     window.eliminarDelCarrito = eliminarDelCarrito;
     window.eliminarTodoCarrito = eliminarTodoCarrito;
