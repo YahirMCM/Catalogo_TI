@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalAmount = document.getElementById('totalAmount');
     const generatePdfButton = document.getElementById('generatePdf');
     const sendPdfButton = document.getElementById('sendpdf'); // Botón de "Enviar por correo"
+    const pagoTarjetaButton = document.getElementById('generar-factura');
+    const paypalContainer = document.getElementById('paypal-button-container');
     const itemsContainer = document.getElementById('items');
     const totalDespuesIVA = document.getElementById('totalDespuesIVA');
 
@@ -18,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicialmente deshabilitar los botones
     generatePdfButton.disabled = true;
     sendPdfButton.disabled = true;
+    pagoTarjetaButton.disabled = true;
+    paypalContainer.classList.add('deshabilitado');
 
     // Mostrar campos específicos según el tipo de cliente y verificar campos
     customerType.addEventListener('change', (event) => {
@@ -67,6 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
         sendPdfButton.disabled = !todosCamposLlenos;
         sendPdfButton.style.backgroundColor = todosCamposLlenos ? "#4CAF50" : "grey";
         sendPdfButton.onclick = todosCamposLlenos ? null : () => alert("Para enviar la factura, complete todos los campos requeridos.");
+
+        pagoTarjetaButton.disabled = !todosCamposLlenos;
+        pagoTarjetaButton.style.backgroundColor = todosCamposLlenos ? "#4CAF50" : "grey";
+        pagoTarjetaButton.onclick = todosCamposLlenos ? null : () => alert("Para enviar la factura, complete todos los campos requeridos.");
+
+        if (todosCamposLlenos)
+        {
+            paypalContainer.classList.remove('deshabilitado');
+        }
+        else
+        {
+            paypalContainer.classList.add('deshabilitado');
+        }
     }
 
     // Cargar productos desde el carrito (resto de la función sin cambios)

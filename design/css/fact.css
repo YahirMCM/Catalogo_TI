@@ -5,6 +5,11 @@
     font-family: "Euclid Circular A", "Poppins";
 }
 
+.deshabilitado {
+    pointer-events: none; /* Impide clics y eventos */
+    opacity: 0.5;         /* Reduce la opacidad para indicar estado deshabilitado */
+  }
+
 body {
     background-color: #f0f0f5;
     display: flex;
