@@ -278,3 +278,14 @@
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
+
+.centrar-detalles {
+    text-align: center;
+}
+
+.centrar-detalles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
